@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 #{title}: #{user.userName}
+  
+  if user_todos.length
+  
+    p #[strong Delete the following todos before attempting to delete this user.]
+  
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Todos
+    
+      dl
+      each todo in user_todos
+        dt 
+          a(href=todo.url) #{todo.todoName}
+        dd #{todo.todoDesc}
+
+  else
+    p Do you really want to delete this User?
+    
+    form(method='POST' action='')
+      div.form-group
+        input#userrid.form-control(type='hidden',name='userrid', required='true', value=user._id )
+
+      button.bg-blue.text-white.font-bold.py-2.rounded(class='sm:px-2 md:px2 lx:px-4 hover:bg-red-dark focus:outline-none focus:shadow-outline' type='submit') Delete

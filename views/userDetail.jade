@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 User: #{user.userName}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 TODOS
+    
+    dl
+      each todo in user_todos
+        dt 
+          a(href=todo.url) #{todo.todoName}
+        dd #{todo.todoDesc}
+        dd Last update: #{todo.updated}
+
+      else
+        p This author has no Todos.
