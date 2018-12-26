@@ -5,14 +5,17 @@ block content
    div(class='xl:w-1/2 md:w-4/5 sm:w-full rounded overflow-hidden shadow-lg')
     div.h-12.bg-indigo.flex.items-center
        a.font-bold.text-3xl.mb-2.text-white.p-5 #{title}
-    form.px-8.pt-6.pb-8.mb-4
+    form.px-8.pt-6.pb-8.mb-4(action='' method='POST')
         div.mb-4
           label.block.text-grey-darker.text-sm.font-bold.mb-2(for='username') Username     
-          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Username')
+          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Username', name='username')
         div.mb-6
           label.block.text-grey-darker.text-sm.font-bold.mb-2(for='password') Password 
-          input#password.shadow.appearance-none.border.border-red.rounded.w-full.py-2.px-3.text-grey-darker.mb-3.leading-tight(class='focus:outline-none focus:shadow-outline', type='password', placeholder='******************') 
-          p.text-red.text-xs.italic.flex Please choose a password.
+          input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.mb-3.leading-tight(class='focus:outline-none focus:shadow-outline', type='password', name='password', placeholder='******************') 
         div.flex.items-center.justify-between 
-          button.bg-blue.text-white.font-bold.py-2.rounded(class='sm:px-2 md:px2 lx:px-4 hover:bg-blue-dark focus:outline-none focus:shadow-outline', type='button') Sign In
+          button.bg-blue.text-white.font-bold.py-2.rounded(class='sm:px-2 md:px2 lx:px-4 hover:bg-blue-dark focus:outline-none focus:shadow-outline', type='submit') Sign In
           a.inline-block.align-baseline.font-bold.text-sm.text-blue(class='hover:text-blue-darker', href='#') Forgot Password?
+        if errors 
+          ul
+            for error in errors
+              li.text-red!= error.msg

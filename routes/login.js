@@ -1,23 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-//Import the mongoose module
-var mongoose = require('mongoose');
-//Set up default mongoose connection
-var mongoDB = 'mongodb://127.0.0.1/todo_data';
-mongoose.connect(mongoDB);
-// Get Mongoose to use the global promise library
-mongoose.Promise = global.Promise;
-//Get the default connection
-var db = mongoose.connection;
-//Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// Require controller modules.
+var login_controller = require('../controllers/loginController');
 
 
+// GET request for user login.
+router.get('/', login_controller.login_get);
 
-/* GET login page. */
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Todo' });
-});
+// POST request for user login.
+router.post('/', login_controller.login_post);
+
+//GET request for user logout
+router.get('/logout', login_controller.logout_get);
 
 module.exports = router;

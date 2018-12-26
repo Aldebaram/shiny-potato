@@ -31,6 +31,16 @@ router.post('/user/:id/update', user_controller.user_update_post);
 router.get('/user/:id', user_controller.user_detail);
 
 // GET request for list of all Users.
-router.get('/users', user_controller.user_list);
+router.get('/users', requiresLogin ,user_controller.user_list);
+
+function requiresLogin(req, res, next) {
+    if (req.session && req.session.userId) {
+      return next();
+    } else {
+      var err = new Error('You must be logged in to view this page.');
+      err.status = 401;
+      return next(err);
+    }
+  }
 
 module.exports = router;
