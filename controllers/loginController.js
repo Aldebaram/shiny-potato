@@ -6,7 +6,8 @@ var async = require("async");
 
 // Display user login form on GET.
 exports.login_get = function(req, res) {
-  res.render("login", { title: "User Login" });
+  console.log(res.locals.logged);
+  res.render("login", { title: "User Login", },res.locals.logged);
 };
 
 // handle login form on POST.

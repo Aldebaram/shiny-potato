@@ -1,12 +1,10 @@
 extends layout
 
 block content
-  div(class='flex justify-center items-center w-full')
-   div(class='sm:w-5/6 lg:w-3/4 rounded overflow-hidden shadow-lg')
-    div.h-12.bg-indigo.flex.items-center
-       a.font-bold.text-3xl.mb-2.text-white.p-5 #{title}
-    div.px-8.pt-6.pb-8.mb-4
-        div.mb-4
-        div.mb-6
-        div.flex.items-center.justify-between 
-          
+ br
+ div
+   div.mx-auto.card.shadow.bg-dark.border.rounded.border-primary.overflow-hidden(style="width: 50rem;")
+      img.card-img-top(src='', alt='Todo list', style="")
+      div.card-body
+       a.card-title.text-light #{title}
+       p.card-text.text-light batata frita

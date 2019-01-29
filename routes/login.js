@@ -6,12 +6,22 @@ var login_controller = require('../controllers/loginController');
 
 
 // GET request for user login.
-router.get('/', login_controller.login_get);
+router.get('/', isLogged ,login_controller.login_get);
 
 // POST request for user login.
-router.post('/', login_controller.login_post);
+router.post('/', isLogged ,login_controller.login_post);
 
 //GET request for user logout
-router.get('/logout', login_controller.logout_get);
+router.get('/logout', isLogged ,login_controller.logout_get);
+
+function isLogged(req, res, next) {
+    if (req.session.userId) {
+        res.locals.logged = true;  
+        next();
+      }else{
+      //idk
+      next();
+      }
+  }
 
 module.exports = router;

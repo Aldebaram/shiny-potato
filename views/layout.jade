@@ -1,9 +1,45 @@
-doctype html
-html
+#header
+ doctype html
+ html(lang="en")
   head
-    title= title
-    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous")
+    meta(charset="utf-8")
+    script(defer='', src='https://use.fontawesome.com/releases/v5.6.3/js/all.js', integrity='sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1', crossorigin='anonymous')
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js', integrity='sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js', integrity='sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k', crossorigin='anonymous')
   body
-    block content
+   nav.navbar.navbar-expand-lg.navbar-light.bg-light.navbar-fixed-top.shadow
+    a.navbar-brand(href="/default") Todo
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          a.nav-link(href='/default')
+            | Home 
+            span.sr-only (current)
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Todo
+          .dropdown-menu(aria-labelledby='navbarDropdown')
+            div.dropdown-item
+              i(style="margin-left:5px;margin-right:5px").fas.fa-clipboard 
+              a.text-dark.text-decoration-none(href='/todo/create') New Todo
+            div.dropdown-item
+              i(style="margin-left:5px;margin-right:5px").fas.fa-clipboard-list
+              a.text-dark.text-decoration-none(href='/todos') Todo List
+            .dropdown-divider
+            a.dropdown-item(href='#') Yeet
+      form.form-inline.my-2.my-lg-0
+        if logged
+          div.btn.btn-outline-success.my-2.my-sm-0
+            i(style="margin-left:5px;margin-right:5px").fas.fa-sign-out-alt
+            a.text-dark.text-decoration-none(href='/login/logout') Logout
+        else
+          div.btn.btn-outline-success.my-2.my-sm-0
+            i(style="margin-left:5px;margin-right:5px").fas.fa-sign-out-alt
+            a.text-dark.text-decoration-none(href='/login') Login   
+   block content
+      
