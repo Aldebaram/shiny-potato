@@ -2,8 +2,11 @@
 var mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator')
 var Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
-db = mongoose.connect('mongodb://localhost:27017/todo_data');
+const bcrypt = require('bcryptjs');
+const connString = 'mongodb+srv://bluereptile:PxBAKe6ZMYKKJQI0@clusterapi-ppfxo.mongodb.net/test?retryWrites=true&w=majority';
+db = mongoose.connect(connString,{dbName:'test',useNewUrlParser: true});
+
+
 mongoose.set('useCreateIndex', true);
 
 var UserSchema = new Schema({

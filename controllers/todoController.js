@@ -44,7 +44,7 @@ exports.todo_detail = function(req, res, next) {
 
 // Display Todo create form on GET.
 exports.todo_create_get = function(req, res) {
-    res.render('register', { title: 'Create Todo' });
+    res.render('registerTodo', { title: 'Create Todo' });
 };
 
 // Handle Todo create on POST.
@@ -55,6 +55,9 @@ exports.todo_create_post =  [
     
     // Sanitize (trim and escape) the name field.
     sanitizeBody('todoName').trim().escape(),
+
+    // Sanitize (trim and escape) the name Description.
+    sanitizeBody('todoDesc').trim().escape(),
   
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -62,28 +65,28 @@ exports.todo_create_post =  [
       // Extract the validation errors from a request.
       const errors = validationResult(req);
   
-      // Create a genre object with escaped and trimmed data.
+      // Create a todo object with escaped and trimmed data.
       var todo = new Todo(
         { 
-          todoName: req.body.todoname,
-          todoPassword: req.body.password 
+          todoName: req.body.todoName,
+          todoDesc: req.body.todoDesc 
         }
       );
   
   
       if (!errors.isEmpty()) {
         // There are errors. Render the form again with sanitized values/error messages.
-        res.render('register', { title: 'Create Todo', todo: todo, errors: errors.array()});
+        res.render('registerTodo', { title: 'Create Todo', todo: todo, errors: errors.array()});
       return;
       }
       else {
         // Data from form is valid.
         // Check if Genre with same name already exists.
-        Todo.findOne({ 'todoname': req.body.todoname })
+        Todo.findOne({ 'todoName': req.body.todoName })
           .exec( function(err, found_todo) {
              if (err) { return next(err); }
              if (found_todo) {
-                res.render('register', { title: 'Create Todo', todo: todo, errors: errors.array()});
+                res.render('registerTodo', { title: 'Create Todo', todo: todo, errors: ['Todo already exist']});
              }
              else {
                todo.save(function (err) {
