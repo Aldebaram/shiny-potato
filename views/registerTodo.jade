@@ -7,13 +7,15 @@ block content
        a.font-bold.text-3xl.mb-2.text-white.p-5 #{title}
     form.px-8.pt-6.pb-8.mb-4(action='' method='POST')
         div.mb-4
-          label.block.text-grey-darker.text-sm.font-bold.mb-2(for='username') Username     
-          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Username', name='username' value=(undefined===user ? '' : user.userName))
+          label.block.text-grey-darker.text-sm.font-bold.mb-2(for='todoName') Username
+          br     
+          input#username.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.leading-tight(class='focus:outline-none focus:shadow-outline', type='text', placeholder='Todo Name', name='todoName' value=(undefined===user ? '' : user.userName))
         div.mb-6
-          label.block.text-grey-darker.text-sm.font-bold.mb-2(for='password') Password 
-          input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.mb-3.leading-tight(class='focus:outline-none focus:shadow-outline', type='password',name='password' ,placeholder='******************') 
+          label.block.text-grey-darker.text-sm.font-bold.mb-2(for='todoDesc') Todo Description 
+          br
+          input#password.shadow.appearance-none.border.rounded.w-full.py-2.px-3.text-grey-darker.mb-3.leading-tight(class='focus:outline-none focus:shadow-outline', type='text',name='todoDesc' ,placeholder='Description') 
         div.flex.items-center.justify-between 
-          button.bg-blue.text-white.font-bold.py-2.rounded(class='sm:px-2 md:px2 lx:px-4 hover:bg-blue-dark focus:outline-none focus:shadow-outline', type='submit') Register
+          button.bg-primary.text-white.font-bold.py-2.rounded(class='sm:px-2 md:px2 lx:px-4 hover:bg-blue-dark focus:outline-none focus:shadow-outline', type='submit') Register
           if errors 
             ul
               for error in errors
